@@ -13,6 +13,7 @@ Ext.application({
             url: '/ticketingsystem/assets/conf.json',
             success: function (response) {
                 configs = Ext.decode(response.responseText);
+                
                 // datapath file (ie /assets/conf.json)
                 me.dp = configs;
             },

@@ -16,23 +16,27 @@ Ext.define('ui.view.form.Ticket', {
 			text: 'Save',
 			itemId: 'saveForm',
 			handler: function (btn) {
+
 				var panel = this.up('form'),
 				form = panel.getForm(),
-				values = form.getValues();
+				values = form.getValues(),
+				grid = Ext.getCmp(panel.grid);
 				
 				panel.setLoading('Saving...');
-				ppp = panel;
-				if(panel.grid) {
-					grid = Ext.getCmp(panel.grid);
-				} else {
+
+				if(!panel.grid) {
 					grid = Ext.getCmp('mainView').down('grid');
 				}
 
 				if (form.isValid()) {
-					var store = grid.getStore(),
-					model = Ext.create(store.model.getName(), values);
-					
-					store.add(model);
+					var store = grid.getStore();
+
+					if (!values.id) {
+						values.id = store.getCount() + 1;
+						store.add(Ext.create(store.model.getName(), values))
+					}  else {
+						form.updateRecord(values)
+					}
 
 					panel.setLoading('Changes have been committed.')
 
