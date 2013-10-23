@@ -1,18 +1,97 @@
 Ext.application({
-    requires: ['Ext.container.Viewport'],
-    name: 'sample',
-    appFolder: '.',
-
+    name: 'ui',
+    appFolder: '/assets/ui/',
+    stores: ['ui.store.main.Navigation', 'ui.store.Tickets'],
+    controllers: ['ui.controller.Main'],
     launch: function() {
         Ext.create('Ext.container.Viewport', {
-            id: 'globalView',
-            layout: 'fit',
-            items: [
-                /**
-                 * main application
-                 *
-                 */
-            ]
-        });
+            layout: 'border',
+            alias: 'widget.ticketTracker',
+            id: 'mainView',
+            items: [{
+                region: 'north',
+                html: '<h1 class="x-panel-header">AnkleDeep Ticketing System</h1>',
+                border: false,
+                margins: '0 0 5 0'
+            }, 
+            {
+                region: 'west',
+                xtype: 'treepanel',
+                collapsible: true,
+                title: 'Sections',
+                width: 250,
+                id: 'nav',
+                rootVisible: false,
+                useArrows: true,
+                store: Ext.create('ui.store.main.Navigation'),
+                bbar: ['->', {
+                    xtype: 'button',
+                    text: 'Add Section',
+                    itemId: 'newSection'
+                }]
+            }, 
+            {
+                region: 'center',
+                title: null,
+                xtype: 'gridpanel',
+                columns: [
+                    { 
+                        text: 'ID',  
+                        dataIndex: 'id' 
+                    }, { 
+                        text: 'Type', 
+                        dataIndex: 'type', 
+                        width: 150
+                    }, { 
+                        text: 'Description', 
+                        dataIndex: 'description',
+                        flex: 1
+                    }, {
+                        text: 'Status',
+                        dataIndex: 'status',
+                        renderer: function(value, metaData) {
+                            var v = value.replace(' ', '').toLowerCase(),
+                            statusColors = {
+                                "open" : "#009933",
+                                "closed": "#990000",
+                                "inprogress": "#CC9900",
+                                "nofuckingway" : "#33FFFF"
+                            },
+                            bg = (statusColors[v]) ? statusColors[v] : "transparent";
+
+                            return "<div style='width:100%; height:100%; text-align: center; background-color:"+ bg +"'>"+ value +"</div>";
+                        },
+                        width: 125
+                    }, {
+                       text: 'Assigned To',
+                       dataIndex: 'assigned',
+                       width: 200
+                    },{
+                       text: 'Opened',
+                       xtype: 'datecolumn',
+                       dataIndex: 'dateCreated',
+                       format: 'd/m/Y'
+                    },{
+                       text: 'Updated',
+                       xtype: 'datecolumn',
+                       dataIndex: 'dateUpdated',
+                       format: 'd/m/Y'
+                    }, {
+                        text: 'Edit Ticket',
+                        xtype: 'actioncolumn'
+                    }
+                ]
+            }, {
+                region: 'south',
+                height: 25,
+                id: 'statusBar',
+                items: [{
+                    xtype: 'text',
+                    id: 'statusMessage',
+                    style: 'float: right; color: #fff; margin-right:25px; font-weight:bold;',
+                    text: 'Ready...'
+                }]
+            }]
+        })
     }
 });
