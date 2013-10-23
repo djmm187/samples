@@ -1,0 +1,11 @@
+{
+	"success": true,
+	"results": [
+		{"id": 1, "name": "Foo", "email": "bob@foo.com"},
+		{"id": 2, "name": "Bar", "email": "bar@foo.com"},
+		{"id": 3, "name": "Baz", "email": "baz@foo.com"},
+		{"id": 4, "name": "The Rogue Coder", "email": "rogue@coder.com"},
+		{"id": 5, "name": "Geller Joseph", "email": "geller@joseph.com"}
+	],
+	"message": "Loaded Users..."
+}

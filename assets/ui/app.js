@@ -2,6 +2,7 @@ Ext.application({
     name: 'ui',
     appFolder: '/assets/ui/',
     stores: ['ui.store.main.Navigation', 'ui.store.Tickets'],
+    views: ['ui.view.util.Modal'],
     controllers: ['ui.controller.Main'],
     launch: function() {
         Ext.create('Ext.container.Viewport', {
@@ -33,6 +34,7 @@ Ext.application({
             {
                 region: 'center',
                 title: null,
+                id: 'ticketGrid',
                 xtype: 'gridpanel',
                 columns: [
                     { 
@@ -55,7 +57,7 @@ Ext.application({
                                 "open" : "#009933",
                                 "closed": "#990000",
                                 "inprogress": "#CC9900",
-                                "nofuckingway" : "#33FFFF"
+                                "noway" : "#33FFFF"
                             },
                             bg = (statusColors[v]) ? statusColors[v] : "transparent";
 
@@ -78,7 +80,27 @@ Ext.application({
                        format: 'd/m/Y'
                     }, {
                         text: 'Edit Ticket',
-                        xtype: 'actioncolumn'
+                        xtype: 'actioncolumn',
+                        items: [
+                            {
+                                icon   : '/assets/extjs/examples/shared/icons/fam/information.png',
+                                tooltip: 'View Ticket',
+                                itemId : 'viewTicket',
+                                handler: function (grid, rowIndex, colIndex) {
+                                    var rec = grid.getStore().getAt(rowIndex);
+
+                                    var form = Ext.create('ui.view.form.Ticket', {
+                                        raw: rec
+                                    });
+                                    form.loadRecord(rec);
+                                    
+                                    Ext.create('ui.view.util.Modal', {
+                                        title: "Ticket #"+rec.get('id'),
+                                        items: [form]
+                                    });
+                                }
+                            }
+                        ]
                     }
                 ]
             }, {

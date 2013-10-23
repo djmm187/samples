@@ -7,7 +7,9 @@ Ext.define('ui.model.Ticket', {
     fields : [
       'id',
       'type',
+      'title',
       'description',
+      'section',
       'status',
       'assigned',
       'dateCreated',

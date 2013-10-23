@@ -14,6 +14,9 @@ Ext.define('ui.controller.Main', {
 		this.control({
 			"#mainView treepanel#nav": {
 				itemclick: this.onSectionClick
+			},
+			"[itemId=viewTicket]": {
+				'click': this.viewTicket
 			}
 		});
 	},
@@ -42,4 +45,9 @@ Ext.define('ui.controller.Main', {
 		
 		return;
 	},
+	viewTicket: function (grid, rowIndex, colIndex) {
+		var rec = grid.getStore().getAt(rowIndex);
+
+        alert(rec.get('id'));
+	}
 });
