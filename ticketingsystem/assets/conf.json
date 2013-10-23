@@ -4,11 +4,11 @@
 
 {
 	"stores": {
-		"Users": "/assets/ticketingsystem/data/users.json",
+		"Users": "/ticketingsystem/assets/ticketingsystem/data/users.json",
 		"Tickets": {
-			"admin" : "/assets/data/admin/tickets.json",
-			"database" : "/assets/data/database/tickets.json",
-			"ui" : "/assets/data/ui/tickets.json"
+			"admin" : "/ticketingsystem/assets/data/admin/tickets.json",
+			"database" : "/ticketingsystem/assets/data/database/tickets.json",
+			"ui" : "/ticketingsystem/assets/data/ui/tickets.json"
 		}
 	}
 }

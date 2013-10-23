@@ -22,16 +22,16 @@ Ext.define('ui.controller.Main', {
 	},
 	onSectionClick: function(view, record, node, index, e, eOpts) {
 		var section = record.getData().text.replace(' ','').toLowerCase(),
-		store = Ext.StoreMgr.lookup('tickets_'+section),
-		url = '/assets/data/'+section+'/tickets.json';
-
+		store = Ext.StoreMgr.lookup('tickets_'+section);
+		console.log(ui.app.dp.stores.Tickets[section]);
+		
 		if (!store) {
 			console.log('no store')
 			store = Ext.create('ui.store.Tickets', {
 				storeId: 'tickets_'+section,
 				    proxy : {
 				        type : 'ajax',
-				        url : url,
+				        url : ui.app.dp.stores.Tickets[section],
 				        reader : {
 				            type : 'json',
 				            root: 'results'
