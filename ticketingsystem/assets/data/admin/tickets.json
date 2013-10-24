@@ -3,7 +3,8 @@
 	"results": [
 		{
 			"id": 6,
-			"type": "frontend",
+			"type": "Blocker",
+			"title": "front end is messed up",
 			"description": "this is a ticket admin description1",
 			"status": "in progress",
 			"assigned" : "Foo",
@@ -12,7 +13,8 @@
 		},
 		{
 			"id": 7,
-			"type": "frontend",
+			"type": "Blocker",
+			"title": "front end is messed up",
 			"description": "this is a ticket admin description2",
 			"status": "in progress",
 			"assigned" : "Bar",
@@ -21,7 +23,8 @@
 		},
 		{
 			"id": 8,
-			"type": "frontend",
+			"type": "Enhancement",
+			"title": "front end is messed up",
 			"description": "this is a ticket admin description3",
 			"status": "open",
 			"assigned" : "Baz",
@@ -30,7 +33,8 @@
 		},
 		{
 			"id": 9,
-			"type": "backend",
+			"type": "Minor",
+			"title": "back end is messed up",
 			"description": "this is a ticket admin description4",
 			"status": "open",
 			"assigned" : "The Rogue Coder",
@@ -39,7 +43,8 @@
 		},
 		{
 			"id": 10,
-			"type": "backend",
+			"type": "Minor",
+			"title": "back end is messed up",
 			"description": "this is a ticket admin description5",
 			"status": "open",
 			"assigned" : "Geller Joseph",

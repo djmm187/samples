@@ -33,7 +33,9 @@ Ext.define('ui.view.form.Ticket', {
 
 					if (!values.id) {
 						values.id = store.getCount() + 1;
-						store.add(Ext.create(store.model.getName(), values))
+						store.add(
+							Ext.create(store.model.getName(), values)
+						)
 					}  else {
 						form.updateRecord(values)
 					}

@@ -4,6 +4,7 @@
 		{
 			"id": 1,
 			"type": "Major",
+			"title": "This is a title",
 			"description": "this is a ticket database description1",
 			"status": "Closed",
 			"assigned" : "Foo",
@@ -13,6 +14,7 @@
 		{
 			"id": 2,
 			"type": "Minor",
+			"title": "This is a title",
 			"description": "this is a ticket database description2",
 			"status": "Open",
 			"assigned" : "Bar",
@@ -22,6 +24,7 @@
 		{
 			"id": 3,
 			"type": "Blocker",
+			"title": "This is a title",
 			"description": "this is a ticket database description3",
 			"status": "Closed",
 			"assigned" : "Baz",
@@ -31,6 +34,7 @@
 		{
 			"id": 4,
 			"type": "Enhancement",
+			"title": "This is a title",
 			"description": "this is a ticket database description4",
 			"status": "In Progress",
 			"assigned" : "The Rogue Coder",
@@ -40,6 +44,7 @@
 		{
 			"id": 5,
 			"type": "Scope Creep",
+			"title": "This is a title",
 			"description": "this is a ticket database description5",
 			"status": "No Way",
 			"assigned" : "Geller Joseph",

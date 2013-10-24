@@ -12,8 +12,15 @@ Ext.define('ui.controller.Main', {
 		var me = this;
 
 		this.control({
+
+			"#mainView": {
+				afterrender: this.loadGrid
+			},
 			"#mainView treepanel#nav": {
 				itemclick: this.onSectionClick
+			},
+			'#mainView treepanel button[itemId=newSection]': {
+				click: this.onNewSectionClick
 			},
 			"[itemId=viewTicket]": {
 				'click': this.viewTicket
@@ -24,10 +31,29 @@ Ext.define('ui.controller.Main', {
 			}
 		});
 	},
-	onSectionClick: function(view, record, node, index, e, eOpts) {
+	loadGrid: function (panel, eOpts) {
+		if (panel.down('grid').getStore().getCount() === 0) {
+
+			var defaultView = panel.down('treepanel').getRootNode();			
+			//this.onSectionClick(null, defaultView.getChildAt(0));
+		}
+	},
+	onNewSectionClick: function (btn) {
+		var panel = btn.up('treepanel').getRootNode();
+
+		panel.appendChild(
+			{
+				text: 'New Node-'+(panel.childNodes.length + 1), 
+				leaf: true
+			}
+		);
+	},
+	sectionNameChange: function() {
+
+	},
+	onSectionClick: function (view, record, node, index, e, eOpts) {
 		var section = record.getData().text.replace(' ','').toLowerCase(),
 			store = Ext.StoreMgr.lookup('tickets_'+section);
-			console.log(ui.app.dp.stores.Tickets[section]);
 
 		if (!store) {
 			console.log('no store')

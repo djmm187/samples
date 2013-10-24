@@ -2,7 +2,7 @@ Ext.application({
     name: 'ui',
     appFolder: '/ticketingsystem/assets/ui/',
     stores: ['ui.store.main.Navigation', 'ui.store.Tickets'],
-    views: ['ui.view.util.Modal'],
+    views: ['ui.util.*'],
     controllers: ['ui.controller.Main'],
     launch: function() {
         var me = this;
@@ -16,7 +16,8 @@ Ext.application({
                 
                 // datapath file (ie /assets/conf.json)
                 me.dp = configs;
-            },
+   		Ext.require(['ui.store.Users']);
+	    },
             failure: function (reponse) {
                 console.log('error loading config file');
                 me.dp = null;

@@ -11,18 +11,18 @@ Ext.define('ui.store.main.Navigation', {
         "children": [
             {
                 "text": "Database",
-                "leaf": false,
+                "leaf": true,
                 "section": "database"
             },
             {
                 "text": "Admin",
-                "leaf": false,
+                "leaf": true,
                 "section": "admin",
 
             },
             {
                 "text": "UI",
-                "leaf": false,
+                "leaf": true,
                 "section": "ui"
             }
         ]

@@ -3,7 +3,8 @@
 	"results": [
 		{
 			"id": 11,
-			"type": "frontend",
+			"type": "Blocker",
+			"title": "Another frontend ticket",
 			"description": "this is a ticket ui description1",
 			"status": "open",
 			"assigned" : "Foo",
@@ -12,7 +13,8 @@
 		},
 		{
 			"id": 12,
-			"type": "frontend",
+			"type": "Major",
+			"title": "Another frontend ticket",
 			"description": "this is a ticket ui description2",
 			"status": "closed",
 			"assigned" : "Bar",
@@ -21,7 +23,8 @@
 		},
 		{
 			"id": 13,
-			"type": "frontend",
+			"type": "Minor",
+			"title": "Another frontend ticket",
 			"description": "this is a ticket ui description3",
 			"status": "in progress",
 			"assigned" : "Baz",
@@ -30,7 +33,8 @@
 		},
 		{
 			"id": 14,
-			"type": "backend",
+			"type": "Minor",
+			"title": "Another backend ticket",
 			"description": "this is a ticket ui description4",
 			"status": "open",
 			"assigned" : "The Rogue Coder",
@@ -39,7 +43,8 @@
 		},
 		{
 			"id": 15,
-			"type": "backend",
+			"type": "Major",
+			"title": "Another backend ticket",
 			"description": "this is a ticket ui description5",
 			"status": "open",
 			"assigned" : "Geller Joseph",

@@ -1,10 +1,10 @@
 /**
-* @class ui.view.util.Modal
+* @class ui.util.Modal
 */ 
 
-Ext.define('ui.view.util.Modal', {
-	extend: 'Ext.window.Window',
-	title: null,
+Ext.define('ui.util.Modal', {
+    extend: 'Ext.window.Window',
+    title: null,
     modal: true,
     closeable: true,
     closeAction: 'destory',
