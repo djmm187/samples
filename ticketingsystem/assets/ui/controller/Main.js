@@ -71,7 +71,14 @@ Ext.define('ui.controller.Main', {
 		store.clearFilter(true);
 
 		if (filters.length > 0) {
-			store.filter('status', filters[0])
+			store.filter(
+				Ext.create('Ext.util.Filter', {
+					filterFn: function(item) {
+						return Ext.Array.contains(filters, item.get("status")); 
+					}, 
+					root: 'data'
+				})
+			)
 			return;
 		}
 
