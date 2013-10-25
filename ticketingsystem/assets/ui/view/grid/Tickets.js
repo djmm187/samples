@@ -107,6 +107,7 @@ Ext.define('ui.view.grid.Tickets', {
                     icon   : '/assets/extjs/examples/shared/icons/fam/information.png',
                     tooltip: 'View Ticket',
                     itemId : 'viewTicket',
+                    style: 'text-align: center',
                     handler: function (grid, rowIndex, colIndex) {
                         var rec = grid.getStore().getAt(rowIndex);
 

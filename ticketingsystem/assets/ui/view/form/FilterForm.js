@@ -58,6 +58,24 @@ Ext.define('ui.view.form.FilterForm', {
             ]
 
         }
+    ],
+    dockedItems: [
+	    {
+	    	dock: 'bottom',
+			xtype: 'toolbar',
+			border: 0,
+			bodyStyle: 'background: none',
+			items: [
+				'->',
+			    {
+			    	xtype: 'button',
+			    	text: 'Done',
+			    	id: 'filterFormDone',
+			    	handler: function (btn) {
+			    		btn.up('form').up('toolbar').hide().up().down('[itemId=toggleFilter]').toggle();
+			    	}
+			    }
+			]
+	    }
     ]
-
 });
