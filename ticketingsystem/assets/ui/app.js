@@ -16,7 +16,7 @@ Ext.application({
                 
                 // datapath file (ie /assets/conf.json)
                 me.dp = configs;
-   		Ext.require(['ui.store.Users']);
+   		        Ext.require(['ui.store.Users']);
 	    },
             failure: function (reponse) {
                 console.log('error loading config file');

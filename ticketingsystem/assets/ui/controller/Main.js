@@ -28,6 +28,9 @@ Ext.define('ui.controller.Main', {
 
 			"#mainView #filterForm checkbox": {
 				'change' : this.filterTickets
+			},
+			"#mainView [itemId=textSearch]": {
+				'change': this.doStoreFilter
 			}
 		});
 	},
@@ -95,12 +98,49 @@ Ext.define('ui.controller.Main', {
 				}()
 
 		store.clearFilter(true);
+		this.doStoreFilter(filters, store);
+	},
 
-		if (filters.length > 0) {
+	doStoreFilter: function (input, newValue, oldValue, eOpts) {
+		var store = input.up('grid').getStore();
+
+
+		var filterMe = function (key, val) {
+			store.filter(
+					Ext.create('Ext.util.Filter', {
+						filterFn: function(item) {
+							return val === item.get(key); 
+						}, 
+						root: 'data'
+					})
+				)
+		};
+
+		store.clearFilter(true);
+
+		if (typeof newValue === "string") {
+
+			if (newValue.match('@')) {
+				var columns = newValue.split('@');
+				for (var c in columns) {
+					var kv = c.split(' ');
+					
+					if (!kv[1]) return;
+					filterMe(kv[0].substr(1), kv[1]);
+				}
+
+			} else {	
+				filterMe("title", newValue);
+			}
+
+			return;
+		}
+
+		if (newValue.length > 0) {
 			store.filter(
 				Ext.create('Ext.util.Filter', {
 					filterFn: function(item) {
-						return Ext.Array.contains(filters, item.get("status")); 
+						return Ext.Array.contains(newValue, item.get("status")); 
 					}, 
 					root: 'data'
 				})
@@ -109,5 +149,5 @@ Ext.define('ui.controller.Main', {
 		}
 
 		store.load();
-	}
+	} 
 });
