@@ -44,12 +44,25 @@ Ext.application({
                 height: 25,
                 id: 'statusBar',
                 border: 0,
-                items: [{
-                    xtype: 'text',
-                    id: 'statusMessage',
-                    style: 'float: right; color: #e6e6e6; margin: 2px 25px 0 0; font-weight:bold;',
-                    text: 'Ready...'
-                }]
+                layout: 'hbox',
+                bodyStyle: 'background: #fff',
+                defaults: {
+                    margin: '10 0 0 0 0'
+                },
+                items: [ 
+                    {
+                        xtype: 'container',
+                        title: null,
+                        border: 0,
+                        flex: 1,
+                        html: "<b>Source available @ <a href='https://github.com/djmm187/samples' target='_blank' title='https://github.com/djmm187/samples'>https://github.com/djmm187/samples</b>"
+                    },{
+                        xtype: 'text',
+                        id: 'statusMessage',
+                        style: 'color: #e6e6e6; margin: 0px 25px 0 0; font-weight:bold;',
+                        text: 'Ready...'
+                    }
+                ]
             }]
         });
     }
