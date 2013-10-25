@@ -110,7 +110,7 @@ Ext.define('ui.controller.Main', {
 			store.filter(
 					Ext.create('Ext.util.Filter', {
 						filterFn: function(item) {
-							return item.get(key).match(new RegExp(val, "i")); 
+							return item.get(key.toLowerCase()).match(new RegExp(val, "i")); 
 						}, 
 						root: 'data'
 					})
