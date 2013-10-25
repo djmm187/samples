@@ -47,19 +47,24 @@ Ext.application({
                 layout: 'hbox',
                 bodyStyle: 'background: #fff',
                 defaults: {
-                    margin: '10 0 0 0 0'
+                    margin: '10 5 0 5'
                 },
                 items: [ 
                     {
                         xtype: 'container',
                         title: null,
                         border: 0,
-                        flex: 1,
+                        flex: 10,
                         html: "<b>Source available @ <a href='https://github.com/djmm187/samples' target='_blank' title='https://github.com/djmm187/samples'>https://github.com/djmm187/samples</b>"
+                    }, {
+                        xtype: 'text',
+                        id: 'systemStatusLabel',
+                        style: 'font-weight: bold;',
+                        text: 'System Status: '
                     },{
                         xtype: 'text',
-                        id: 'statusMessage',
-                        style: 'color: #e6e6e6; margin: 0px 25px 0 0; font-weight:bold;',
+                        id: 'systemStatus',
+                        flex: 1,
                         text: 'Ready...'
                     }
                 ]
