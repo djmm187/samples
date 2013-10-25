@@ -35,10 +35,12 @@ Ext.define('ui.controller.Main', {
 		});
 	},
 	loadGrid: function (panel, eOpts) {
-		if (panel.down('grid').getStore().getCount() === 0) {
-
-			var defaultView = panel.down('treepanel').getRootNode();			
-			//this.onSectionClick(null, defaultView.getChildAt(0));
+		if (panel.down('grid').getStore().getCount() === 0) {		
+			var tree = Ext.getCmp('nav'),
+			rec = tree.getRootNode().getChildAt(0);
+            
+            tree.getSelectionModel().select(rec);
+            this.onSectionClick(rec.getData().text);
 		}
 	},
 	onNewSectionClick: function (btn) {
@@ -52,11 +54,13 @@ Ext.define('ui.controller.Main', {
 		);
 	},
 	sectionNameChange: function() {
-
 	},
 	onSectionClick: function (view, record, node, index, e, eOpts) {
-		var section = record.getData().text.replace(' ','').toLowerCase(),
-			store = Ext.StoreMgr.lookup('tickets_'+section);
+		var section,
+			store;
+
+		section = ((typeof view === "string") ? view : record.getData().text).replace(' ','').toLowerCase();
+		store = Ext.StoreMgr.lookup('tickets_'+section);
 
 		if (!store) {
 			store = Ext.create('ui.store.Tickets', {
@@ -76,6 +80,7 @@ Ext.define('ui.controller.Main', {
 		store.load();
 		
 		return;
+
 	},
 	viewTicket: function (grid, rowIndex, colIndex) {
 		var rec = grid.getStore().getAt(rowIndex);

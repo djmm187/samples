@@ -12,7 +12,8 @@ Ext.define('ui.store.main.Navigation', {
             {
                 "text": "Database",
                 "leaf": true,
-                "section": "database"
+                "section": "database",
+                "selected": true
             },
             {
                 "text": "Admin",

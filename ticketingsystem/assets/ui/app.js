@@ -11,6 +11,7 @@ Ext.application({
             layout: 'border',
             alias: 'widget.ticketTracker',
             id: 'mainView',
+
             items: [{
                 region: 'north',
                 html: '<h1 class="x-panel-header">AnkleDeep Ticketing System</h1>',
@@ -50,6 +51,6 @@ Ext.application({
                     text: 'Ready...'
                 }]
             }]
-        })
+        });
     }
 });
