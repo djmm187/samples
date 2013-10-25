@@ -4,7 +4,7 @@
 
 {
 	"stores": {
-		"Users": "/ticketingsystem/assets/data/users.json",
+		"Users": "/ticketingsystem/assets/data/users.json" ,
 		"Tickets": {
 			"admin" : "/ticketingsystem/assets/data/admin/tickets.json",
 			"database" : "/ticketingsystem/assets/data/database/tickets.json",
