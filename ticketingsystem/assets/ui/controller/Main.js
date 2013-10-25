@@ -114,7 +114,7 @@ Ext.define('ui.controller.Main', {
 						}, 
 						root: 'data'
 					})
-				)
+				);
 		};
 
 		store.clearFilter();
@@ -124,7 +124,7 @@ Ext.define('ui.controller.Main', {
 			if (newValue.match('@')) {
 
 				var columns = newValue.split('@');
-				columns = columns.splice(1,columns.length);
+				columns = columns.splice(1, columns.length);
 
 				for (var c in columns) {
 					var kv = columns[c].split(' ');

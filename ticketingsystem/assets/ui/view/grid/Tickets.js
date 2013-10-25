@@ -5,6 +5,7 @@
 Ext.define('ui.view.grid.Tickets', {
 	extend: 'Ext.grid.Panel',
     currentSection: null,
+    layout: 'fit',
 	dockedItems: [
 		{
 			dock: 'top',
@@ -38,72 +39,18 @@ Ext.define('ui.view.grid.Tickets', {
                     handler: function (btn) {
                         var toolbar = Ext.getCmp('filterForm').up('toolbar');
 
-                        (!btn.pressed) ? toolbar.hide() :toolbar.show();
+                        (btn.pressed) ? toolbar.show() : toolbar.hide();
                     }
                 }
             ],
         }, {
             xtype: 'toolbar',
             dock: 'top',
+            hideMode: 'visibility',
             hidden: true,
-            items: [
-                {
-                    xtype: 'form',
-                    border: 0,
-                    minHeight: 200,
-                    id: 'filterForm',
-                    layout: 'anchor',
-                    items: [
-                        {
-                            xtype: 'combobox',
-                            labelAlign: 'top',
-                            fieldLabel: 'User',
-                            displayField: 'Name',
-                            valueField: 'id',
-                            name: 'assigned'
-                            //store: Ext.create('ui.store.Users')
-                        },
-                        {
-                            xtype: 'fieldcontainer',
-                            border: 0,
-                            title: null,
-                            columns: 2,
-                            layout: 'hbox',
-                            fieldDefaults: {
-                                labelAlign: 'top',
-                                margin: '0 5 0 0',
-                            },
-                            items: [
-                                {
-                                    xtype: 'datefield',
-                                    fieldLabel: 'Start',
-                                    name: 'start'
-                                }, {
-                                    xtype: 'datefield',
-                                    fieldLabel: 'End',
-                                    name: 'end'
-                                }
-                            ]
-                        },
-                        {
-                            xtype: 'checkboxgroup',
-                            fieldLabel: 'Status',
-                            labelAlign: 'left',
-                            vertical: false,
-                            defaults: {
-                                labelAlign: 'left'
-                            },
-                            items: [
-                                {boxLabel: 'Open', name: 'status', inputValue: 'open'},
-                                {boxLabel: 'Closed', name: 'status', inputValue: 'closed'},
-                                {boxLabel: 'In Progress', name: 'status', inputValue: 'inprogress'},
-                                {boxLabel: 'No Way', name: 'status', inputValue: 'noway'}
-                            ]
-
-                        }
-                    ]
-                }
-            ]
+            border:0,
+            layout: 'fit',
+            items: [Ext.create('ui.view.form.FilterForm')]
         }
     ],
     columns: [

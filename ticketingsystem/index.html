@@ -16,11 +16,7 @@
         method: 'GET',
         url: '/ticketingsystem/assets/conf.json',
         success: function (response) {
-            configs = Ext.decode(response.responseText);
-            
-            // datapath file (ie /assets/conf.json)
-            	paths = configs;
-		        Ext.require(['ui.store.Users']);
+            paths = Ext.decode(response.responseText);
 	    },
 	        failure: function (reponse) {
 	            console.log('error loading config file');
