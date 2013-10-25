@@ -5,6 +5,32 @@
 	<title>Samples</title>
 	<link  rel="stylesheet" href="/ticketingsystem/assets/extjs/resources/css/ext-all-neptune-debug.css"/>
 	<script type="application/javascript" src="/ticketingsystem/assets/extjs/ext-all-debug-w-comments.js"></script>
+	<script>
+	/**
+	* for dev purposes
+	*/
+	paths = null;
+
+    (function(){
+    	Ext.Ajax.request({
+        method: 'GET',
+        url: '/ticketingsystem/assets/conf.json',
+        success: function (response) {
+            configs = Ext.decode(response.responseText);
+            
+            // datapath file (ie /assets/conf.json)
+            	paths = configs;
+		        Ext.require(['ui.store.Users']);
+	    },
+	        failure: function (reponse) {
+	            console.log('error loading config file');
+	            return;
+	        }
+	    });
+    })();
+    	
+
+	</script>
 	<script type="application/javascript" src="/ticketingsystem/assets/ui/app.js"></script>
 </head>
 <body></body>

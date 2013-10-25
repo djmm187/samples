@@ -1,11 +1,11 @@
 {
 	"success": true,
 	"results": [
-		{"id": 1, "name": "Foo", "email": "bob@foo.com"},
-		{"id": 2, "name": "Bar", "email": "bar@foo.com"},
-		{"id": 3, "name": "Baz", "email": "baz@foo.com"},
-		{"id": 4, "name": "The Rogue Coder", "email": "rogue@coder.com"},
-		{"id": 5, "name": "Geller Joseph", "email": "geller@joseph.com"}
+		{"id": 1, "name": "Foo", "email": "bob@foo.com", "username": "bfoo"},
+		{"id": 2, "name": "Bar", "email": "bar@foo.com", "username": "barfoo"},
+		{"id": 3, "name": "Baz", "email": "baz@foo.com", "username": "bazMister"},
+		{"id": 4, "name": "The Rogue Coder", "email": "rogue@coder.com", "username": "rouge86"},
+		{"id": 5, "name": "Geller Joseph", "email": "geller@joseph.com", "username": "gjoseph"}
 	],
 	"message": "Loaded Users..."
 }

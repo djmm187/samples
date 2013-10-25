@@ -59,12 +59,11 @@ Ext.define('ui.controller.Main', {
 			store = Ext.StoreMgr.lookup('tickets_'+section);
 
 		if (!store) {
-			console.log('no store')
 			store = Ext.create('ui.store.Tickets', {
 				storeId: 'tickets_'+section,
 				    proxy : {
 				        type : 'ajax',
-				        url : ui.app.dp.stores.Tickets[section],
+				        url : paths.stores.Tickets[section],
 				        reader : {
 				            type : 'json',
 				            root: 'results'
@@ -80,8 +79,6 @@ Ext.define('ui.controller.Main', {
 	},
 	viewTicket: function (grid, rowIndex, colIndex) {
 		var rec = grid.getStore().getAt(rowIndex);
-
-        console.log(rec.get('id'));
 	},
 
 	filterTickets: function (checkbox, newValue, oldValue, eOpts) {
@@ -104,30 +101,33 @@ Ext.define('ui.controller.Main', {
 	doStoreFilter: function (input, newValue, oldValue, eOpts) {
 		var store = input.up('grid').getStore();
 
-
 		var filterMe = function (key, val) {
 			store.filter(
 					Ext.create('Ext.util.Filter', {
 						filterFn: function(item) {
-							return val === item.get(key); 
+							return item.get(key).match(val); 
 						}, 
 						root: 'data'
 					})
 				)
 		};
 
-		store.clearFilter(true);
+		store.clearFilter();
 
 		if (typeof newValue === "string") {
 
 			if (newValue.match('@')) {
+
 				var columns = newValue.split('@');
+				columns = columns.splice(1,columns.length);
+
 				for (var c in columns) {
-					var kv = c.split(' ');
-					
-					if (!kv[1]) return;
-					filterMe(kv[0].substr(1), kv[1]);
+					var kv = columns[c].split(' ');
+
+					if (kv.length < 2) break;
+					filterMe(kv[0], kv[1]);
 				}
+				return;
 
 			} else {	
 				filterMe("title", newValue);
@@ -140,6 +140,7 @@ Ext.define('ui.controller.Main', {
 			store.filter(
 				Ext.create('Ext.util.Filter', {
 					filterFn: function(item) {
+						console.log
 						return Ext.Array.contains(newValue, item.get("status")); 
 					}, 
 					root: 'data'

@@ -137,7 +137,7 @@ Ext.define('ui.view.form.Ticket', {
 			name: 'assigned',
 			store: Ext.create('ui.store.Users'),
 			queryMode: 'local',
-			displayField: 'name',
+			displayField: 'username',
 			valueField: 'id'
 		}];
 

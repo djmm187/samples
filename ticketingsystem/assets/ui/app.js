@@ -1,29 +1,11 @@
 Ext.application({
     name: 'ui',
     appFolder: '/ticketingsystem/assets/ui/',
-    stores: ['ui.store.main.Navigation', 'ui.store.Tickets'],
+    stores: ['ui.store.main.Navigation', 'ui.store.Tickets', 'ui.store.Users'],
     views: ['ui.util.*'],
     controllers: ['ui.controller.Main'],
     launch: function() {
         var me = this;
-
-        //lets just fetch the file for now. TODO: move this to a more managable place.
-        Ext.Ajax.request({
-            method: 'GET',
-            url: '/ticketingsystem/assets/conf.json',
-            success: function (response) {
-                configs = Ext.decode(response.responseText);
-                
-                // datapath file (ie /assets/conf.json)
-                me.dp = configs;
-   		        Ext.require(['ui.store.Users']);
-	    },
-            failure: function (reponse) {
-                console.log('error loading config file');
-                me.dp = null;
-            }
-        });
-
 
         Ext.create('Ext.container.Viewport', {
             layout: 'border',
@@ -32,8 +14,7 @@ Ext.application({
             items: [{
                 region: 'north',
                 html: '<h1 class="x-panel-header">AnkleDeep Ticketing System</h1>',
-                border: false,
-                margins: '0 0 5 0'
+                border: 0,
             }, 
             {
                 region: 'west',
@@ -41,6 +22,7 @@ Ext.application({
                 collapsible: true,
                 title: 'Sections',
                 width: 250,
+                border: 0,
                 id: 'nav',
                 rootVisible: false,
                 useArrows: true,
@@ -60,10 +42,11 @@ Ext.application({
                 region: 'south',
                 height: 25,
                 id: 'statusBar',
+                border: 0,
                 items: [{
                     xtype: 'text',
                     id: 'statusMessage',
-                    style: 'float: right; color: #fff; margin-right:25px; font-weight:bold;',
+                    style: 'float: right; color: #e6e6e6; margin: 2px 25px 0 0; font-weight:bold;',
                     text: 'Ready...'
                 }]
             }]

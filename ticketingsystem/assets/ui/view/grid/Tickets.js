@@ -4,6 +4,7 @@
 
 Ext.define('ui.view.grid.Tickets', {
 	extend: 'Ext.grid.Panel',
+    currentSection: null,
 	dockedItems: [
 		{
 			dock: 'top',
@@ -43,7 +44,7 @@ Ext.define('ui.view.grid.Tickets', {
             ],
         }, {
             xtype: 'toolbar',
-            dock: 'bottom',
+            dock: 'top',
             hidden: true,
             items: [
                 {
@@ -52,11 +53,6 @@ Ext.define('ui.view.grid.Tickets', {
                     minHeight: 200,
                     id: 'filterForm',
                     layout: 'anchor',
-                    dockedItems: [
-                        {
-
-                        }
-                    ],
                     items: [
                         {
                             xtype: 'combobox',

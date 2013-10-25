@@ -7,7 +7,7 @@ Ext.define('ui.store.Users',{
 	model: 'ui.model.Users',
 	proxy: {
 		type: 'ajax',
-		url: ui.app.dp.stores.Users,
+		url: paths.stores.Users,
 		reader: {
 			type: 'json',
 			root: 'results'
