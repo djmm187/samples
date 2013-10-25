@@ -45,8 +45,9 @@ Ext.define('ui.view.form.FilterForm', {
         {
             xtype: 'checkboxgroup',
             fieldLabel: 'Status',
-            labelAlign: 'left',
+            labelAlign: 'top',
             vertical: false,
+            width: 500,
             defaults: {
                 labelAlign: 'left'
             },
