@@ -35,7 +35,7 @@ Toolbars, Grid views, and Modal functionalities.
 
 A few cool items to look at: 
 	
-	/ticketingsystem/assets/ui/controller/Main.js - filterTickets (method)
+	/ticketingsystem/assets/ui/controller/Main.js - doStoreFilter (method)
 		this method all the user to specify column nammed annotations
 
 	/ticketingsystem/assets/ui/controller/Main.js - updateSystemStatus (method)
