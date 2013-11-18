@@ -1,3 +1,16 @@
+/**
+* @namespace ui
+* @author Nick Polkowske
+* 
+*   Main application viewport
+*       Regions: 
+*           North - Header 
+*           West - Navigation
+*           Center - Main Table 
+*           South - Status Bar
+*/
+
+
 Ext.application({
     name: 'ui',
     appFolder: '/ticketingsystem/assets/ui/',
@@ -14,7 +27,7 @@ Ext.application({
 
             items: [{
                 region: 'north',
-                html: '<h1 class="x-panel-header">AnkleDeep Ticketing System</h1>',
+                html: '<h1 class="x-panel-header">Demo Ticketing System</h1>',
                 border: 0,
             }, 
             {
@@ -28,6 +41,12 @@ Ext.application({
                 rootVisible: false,
                 useArrows: true,
                 store: Ext.create('ui.store.main.Navigation'),
+                selType: 'cellmodel',
+                plugins: [
+                    Ext.create('Ext.grid.plugin.CellEditing', {
+                        clicksToEdit: 2
+                    })
+                ],
                 bbar: ['->', {
                     xtype: 'button',
                     text: 'Add Section',

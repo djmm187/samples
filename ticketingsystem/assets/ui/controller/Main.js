@@ -1,5 +1,6 @@
 /**
 * @class ui.controller.Main
+*	main controller for ticketing system (events bound to view)
 */
 
 Ext.define('ui.controller.Main', {
@@ -8,6 +9,7 @@ Ext.define('ui.controller.Main', {
 		ref: 'mainNav',
 		selector: '#mainView treepanel#nav'
 	}],
+
 	init: function() {
 		var me = this;
 
@@ -30,10 +32,19 @@ Ext.define('ui.controller.Main', {
 				'change' : this.filterTickets
 			},
 			"#mainView [itemId=textSearch]": {
-				'change': this.doStoreFilter
+				'change': this.doStoreFilter,
+				'focus' : function() { this.updateSystemStatus('Begin Filtering Tickets...') },
+				'blur' : this.updateSystemStatus
 			}
 		});
 	},
+
+	/**
+		@method loadGrid
+
+		method automatically loads first nodes tickets into grid
+		(basically the initial view)
+	**/
 	loadGrid: function (panel, eOpts) {
 		if (panel.down('grid').getStore().getCount() === 0) {		
 			var tree = Ext.getCmp('nav'),
@@ -43,25 +54,38 @@ Ext.define('ui.controller.Main', {
             this.onSectionClick(rec.getData().text);
 		}
 	},
+
+	/**
+		@method onNewSectionClick
+
+		method adds a new node to the applications treeview
+	**/
 	onNewSectionClick: function (btn) {
 		var panel = btn.up('treepanel').getRootNode();
 
 		panel.appendChild(
 			{
-				text: 'New Node-'+(panel.childNodes.length + 1), 
+				text: 'NewNode-'+(panel.childNodes.length + 1), 
 				leaf: true
 			}
 		);
 	},
-	sectionNameChange: function() {
-	},
+
+	/** TODO: finish me **/
+	sectionNameChange: function () {},
+
+	/**
+		@method onSectionClick
+
+		method loads target nodes associated tickets
+	**/
 	onSectionClick: function (view, record, node, index, e, eOpts) {
 		var section,
 			store;
 
 		section = ((typeof view === "string") ? view : record.getData().text).replace(' ','').toLowerCase();
+		this.updateSystemStatus('Loading '+section+' tickets');
 		store = Ext.StoreMgr.lookup('tickets_'+section);
-
 		if (!store) {
 			store = Ext.create('ui.store.Tickets', {
 				storeId: 'tickets_'+section,
@@ -77,15 +101,26 @@ Ext.define('ui.controller.Main', {
 		}
 
 		Ext.getCmp('mainView').down('grid').bindStore(store);
-		store.load();
-		
-		return;
 
+		store.load();
+		this.updateSystemStatus();
+
+		return;
 	},
+
+	/**
+		@method viewTicket
+	**/
 	viewTicket: function (grid, rowIndex, colIndex) {
 		var rec = grid.getStore().getAt(rowIndex);
 	},
 
+	/** 
+		@method filterTickets
+		
+		method to use filter form provided in the main grid toolbar
+		TODO: finish me sometime
+	**/
 	filterTickets: function (checkbox, newValue, oldValue, eOpts) {
 		var grid = checkbox.up('grid'),
 			store = grid.getStore();
@@ -103,6 +138,13 @@ Ext.define('ui.controller.Main', {
 		this.doStoreFilter(filters, store);
 	},
 
+	/**
+		@method doStoreFilter
+
+		method provides a way to search local data store
+		default is to search titles
+		annotations provide a way to specify query columns
+	**/
 	doStoreFilter: function (input, newValue, oldValue, eOpts) {
 		var store = input.up('grid').getStore();
 
@@ -132,7 +174,6 @@ Ext.define('ui.controller.Main', {
 					if (kv.length < 2) break;
 					filterMe(kv[0], kv[1]);
 				}
-				return;
 
 			} else {	
 				filterMe("title", newValue);
@@ -145,7 +186,6 @@ Ext.define('ui.controller.Main', {
 			store.filter(
 				Ext.create('Ext.util.Filter', {
 					filterFn: function(item) {
-						console.log
 						return Ext.Array.contains(newValue, item.get("status")); 
 					}, 
 					root: 'data'
@@ -155,5 +195,17 @@ Ext.define('ui.controller.Main', {
 		}
 
 		store.load();
-	} 
+	},
+
+	/** 
+		@method updateSystemStatus
+
+		shared method to show a message to the user
+	**/
+	updateSystemStatus: function (message) {
+		if (!message || typeof message === "object") message = "Ready ...";
+
+		Ext.getCmp('systemStatus').setText(message);
+	}
+
 });
