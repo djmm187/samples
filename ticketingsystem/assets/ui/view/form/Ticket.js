@@ -48,14 +48,10 @@ Ext.define('ui.view.form.Ticket', {
 						panel.setLoading(false);
 						form.reset();
 					}
-
 				}
 
-				
 				panel.setLoading(false);
 				return;
-				
-
 			}
 		},
 		{
@@ -114,22 +110,22 @@ Ext.define('ui.view.form.Ticket', {
 			valueField: 'type'
 		}, {
 			xtype: 'textareafield',
-			fieldLabel: 'test',
+			fieldLabel: 'Description',
 			name: 'description'
 		}, {
 			xtype: 'combobox',
 			fieldLabel: 'Status',
 			name: 'status',
 			store: Ext.create('Ext.data.Store', {
-					fields: ['status'],
+					fields: ['status', 'display'],
 					data: [
-					{'status': 'open'},
-					{'status': 'closed'},
-					{'status': 'inprogress'},
-					{'status': 'noway'}]
+					{'status': 'open', 'display': 'Open'},
+					{'status': 'closed', 'display': 'Closed'},
+					{'status': 'inprogress', 'display': 'In Progress'},
+					{'status': 'noway', 'display': 'No Way'}]
 				}),
 			queryMode: 'local',
-			displayField: 'status',
+			displayField: 'display',
 			valueField: 'status'
 		}, {
 			xtype: 'combobox',

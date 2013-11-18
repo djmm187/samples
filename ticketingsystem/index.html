@@ -4,8 +4,18 @@
 	<meta charset="utf-8" />
 	<title>Samples</title>
 	<link  rel="stylesheet" href="/ticketingsystem/assets/extjs/resources/css/ext-all-neptune-debug.css"/>
+	<link  rel="stylesheet" href="/ticketingsystem/assets/styles/styles.css"/>
 	<script type="application/javascript" src="/ticketingsystem/assets/extjs/ext-all-debug-w-comments.js"></script>
 	<script>
+
+
+	/**
+	* OVERRIDES
+	*/
+	Ext.override(Ext.data.AbstractStore,{
+	    indexOf: Ext.emptyFn
+	});
+
 	/**
 	* for dev purposes
 	*/
@@ -13,12 +23,12 @@
 
     (function(){
     	Ext.Ajax.request({
-        method: 'GET',
-        url: '/ticketingsystem/assets/conf.json',
-        success: function (response) {
-            paths = Ext.decode(response.responseText);
-	    },
-	        failure: function (reponse) {
+	        method: 'GET',
+	        url: '/ticketingsystem/assets/conf.json',
+	        success: function (response) {
+	            paths = Ext.decode(response.responseText);
+		    },
+	        failure: function (response) {
 	            console.log('error loading config file');
 	            return;
 	        }

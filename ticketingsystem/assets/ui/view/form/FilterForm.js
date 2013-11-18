@@ -8,46 +8,86 @@ Ext.define('ui.view.form.FilterForm', {
     minHeight: 200,
     bodyPadding: 10,
     id: 'filterForm',
-    layout: 'anchor',
     toFrontOnShow: true,
+    fieldDefaults: {
+    	labelAlign: 'top'
+    },
     items: [
-        {
-            xtype: 'combobox',
-            labelAlign: 'top',
-            fieldLabel: 'User',
-            displayField: 'username',
-            valueField: 'id',
-            name: 'assigned',
-            store: Ext.create('ui.store.Users')
-        },
-        {
-            xtype: 'fieldcontainer',
-            border: 0,
-            title: null,
-            columns: 2,
-            layout: 'hbox',
-            fieldDefaults: {
-                labelAlign: 'top',
-                margin: '0 5 0 0',
-            },
-            items: [
-                {
-                    xtype: 'datefield',
-                    fieldLabel: 'Start',
-                    name: 'start'
-                }, {
-                    xtype: 'datefield',
-                    fieldLabel: 'End',
-                    name: 'end'
-                }
-            ]
-        },
-        {
-            xtype: 'checkboxgroup',
+    {
+    	border: 0,
+    	flex: 1,
+    	items: [
+	    	{
+	            xtype: 'combobox',
+	            fieldLabel: 'User',
+	            displayField: 'username',
+	            valueField: 'id',
+	            name: 'assigned',
+	            store: Ext.create('ui.store.Users')
+	        },
+	        {
+				xtype: 'combobox',
+				fieldLabel: 'Status',
+				name: 'status',
+				store: Ext.create('Ext.data.Store', {
+						fields: ['status', 'display'],
+						data: [
+						{'status': 'open', 'display': 'Open'},
+						{'status': 'closed', 'display': 'Closed'},
+						{'status': 'inprogress', 'display': 'In Progress'},
+						{'status': 'noway', 'display': 'No Way'}]
+					}),
+				queryMode: 'local',
+				displayField: 'display',
+				valueField: 'status'
+			},
+	        {
+	        	xtype: 'textfield',
+	        	fieldLabel: 'Title',
+	        	name: 'title'
+	        }
+        ]
+    },	
+    {
+    	border: 0,
+    	flex: 1,
+    	items: [
+    		{
+				xtype: 'textfield',
+				fieldLabel: 'Description',
+				name: 'description'
+			},
+	        {
+	            xtype: 'fieldcontainer',
+	            border: 0,
+	            title: null,
+	            columns: 2,
+	            layout: 'hbox',
+	            fieldDefaults: {
+	                labelAlign: 'top',
+	                margin: '0 5 0 0'
+	            }
+	        }, {
+                xtype: 'datefield',
+                fieldLabel: 'Start',
+                name: 'start'
+            }, {
+                xtype: 'datefield',
+                fieldLabel: 'End',
+                name: 'end'
+            }
+    	]
+    },
+    {
+    	border: 0,
+    	flex: 0,
+    	items: [
+    	{
+    		xtype: 'checkboxgroup',
             fieldLabel: 'Status',
-            labelAlign: 'top',
             vertical: false,
             width: 500,
+            border: 0,
             defaults: {
                 labelAlign: 'left'
             },
@@ -57,9 +97,8 @@ Ext.define('ui.view.form.FilterForm', {
                 {boxLabel: 'In Progress', name: 'status', inputValue: 'inprogress'},
                 {boxLabel: 'No Way', name: 'status', inputValue: 'noway'}
             ]
-
-        }
-    ],
+    	}]
+    }],
     dockedItems: [
 	    {
 	    	dock: 'bottom',
