@@ -18,14 +18,6 @@ Note: If you have run the build script above, you do not need to run
 	dependancy script.
 
 
-Python
-
-This is a deprecated news scanner from a test implementation of a content
-scraper. This script will consume **n** number of ticker {string} arguments or query for
-persisted tickers, navigate to the main Yahoo News section, crawl the page for headlines,
-dates, and content links. The cached links are used to retrieve the actual article content
-and sent to the database for later use. 
-
 Javascript
 
 This working demo, demo.n-e-r-d.net, is a little ticketing system to show the powerful extension
